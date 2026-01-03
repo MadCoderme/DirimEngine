@@ -1,0 +1,3 @@
+/home/abrar/Projects/gamedev/build/CMakeFiles/DirimEngine.dir
+/home/abrar/Projects/gamedev/build/CMakeFiles/edit_cache.dir
+/home/abrar/Projects/gamedev/build/CMakeFiles/rebuild_cache.dir
