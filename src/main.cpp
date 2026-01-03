@@ -205,17 +205,17 @@ int main() {
     int MenuOption = 1;
     UIScene MenuScene = UIScene(window);
     MenuScene.ClearColor = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-    UIText titleText = { "DirimEngine", 300, 400, 1.0f, glm::vec3(1.0f) };
-    UIText startText = { "Start", 360, 350, 0.6f, glm::vec3(1.0f, 1.0f, 0.0f) };
-    UIText settingsText = { "Settings", 350, 300, 0.5f, glm::vec3(1.0f) };
+    UIText titleText = { "DirimEngine", 270, 400, 1.0f, glm::vec3(1.0f) };
+    UIText startText = { "Start", 360, 340, 0.6f, glm::vec3(1.0f, 1.0f, 0.0f) };
+    UIText settingsText = { "Settings", 350, 290, 0.5f, glm::vec3(1.0f) };
     MenuScene.elements.push_back({ "title", TEXT, nullptr, &titleText });
     MenuScene.elements.push_back({ "start", TEXT, nullptr, &startText });
     MenuScene.elements.push_back({ "settings", TEXT, nullptr, &settingsText });
 
     UIScene DeadScene = UIScene(window);
     DeadScene.ClearColor = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-    UIText deadText = { "You ded", 300, 400, 1.0f, glm::vec3(1.0f) };
-    UIText reloadText = { "Press R to restart", 300, 350, 0.6f, glm::vec3(1.0f, 1.0f, 0.0f) };
+    UIText deadText = { "You ded", 300, 400, 1.0f, glm::vec3(0.9f, 0.0f, 0.0f) };
+    UIText reloadText = { "Press R to restart", 280, 350, 0.6f, glm::vec3(1.0f, 1.0f, 0.0f) };
     DeadScene.elements.push_back({ "dead", TEXT, nullptr, &deadText });
     DeadScene.elements.push_back({ "reload", TEXT, nullptr, &reloadText });
 
