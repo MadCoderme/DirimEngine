@@ -29,9 +29,9 @@ public:
     glm::vec4 ClearColor;
 
     UIScene(GLFWwindow* w) : 
-        uiShader("/home/abrar/Projects/gamedev/src/shaders/uishader.vs", "/home/abrar/Projects/gamedev/src/shaders/uishader.fs"),
-        textShader("/home/abrar/Projects/gamedev/src/shaders/textshader.vs", "/home/abrar/Projects/gamedev/src/shaders/textshader.fs"),
-        textRenderer("/home/abrar/Projects/gamedev/src/fonts/Arial.ttf")
+        uiShader(DIRIMENGINE_ASSET_ROOT "/shaders/uishader.vs", DIRIMENGINE_ASSET_ROOT "/shaders/uishader.fs"),
+        textShader(DIRIMENGINE_ASSET_ROOT "/shaders/textshader.vs", DIRIMENGINE_ASSET_ROOT "/shaders/textshader.fs"),
+        textRenderer(DIRIMENGINE_ASSET_ROOT "/fonts/Arial.ttf")
     {
         window = w;
     }

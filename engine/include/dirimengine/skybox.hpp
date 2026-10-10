@@ -12,7 +12,7 @@
 
 class SkyBox {
     unsigned int VAO, VBO, texture;
-    Shader shader = Shader("/home/abrar/Projects/gamedev/src/shaders/skybox.vs", "/home/abrar/Projects/gamedev/src/shaders/skybox.fs");
+    Shader shader = Shader(DIRIMENGINE_ASSET_ROOT "/shaders/skybox.vs", DIRIMENGINE_ASSET_ROOT "/shaders/skybox.fs");
 
 public:
     SkyBox(vector<string> faces)

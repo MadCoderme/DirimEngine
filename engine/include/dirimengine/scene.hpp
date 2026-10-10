@@ -51,10 +51,10 @@ public:
 
     Scene(GLFWwindow* w) : window(w),
           // Initialize Shaders here so they load AFTER context is created
-          generalLitShader("/home/abrar/Projects/gamedev/src/shaders/shader.vs", "/home/abrar/Projects/gamedev/src/shaders/shader.fs"), 
-          uiShader("/home/abrar/Projects/gamedev/src/shaders/uishader.vs", "/home/abrar/Projects/gamedev/src/shaders/uishader.fs"),
-          textShader("/home/abrar/Projects/gamedev/src/shaders/textshader.vs", "/home/abrar/Projects/gamedev/src/shaders/textshader.fs"),
-          textRenderer("/home/abrar/Projects/gamedev/src/fonts/Arial.ttf"),
+          generalLitShader(DIRIMENGINE_ASSET_ROOT "/shaders/shader.vs", DIRIMENGINE_ASSET_ROOT "/shaders/shader.fs"),
+          uiShader(DIRIMENGINE_ASSET_ROOT "/shaders/uishader.vs", DIRIMENGINE_ASSET_ROOT "/shaders/uishader.fs"),
+          textShader(DIRIMENGINE_ASSET_ROOT "/shaders/textshader.vs", DIRIMENGINE_ASSET_ROOT "/shaders/textshader.fs"),
+          textRenderer(DIRIMENGINE_ASSET_ROOT "/fonts/Arial.ttf"),
           camera(),
           player(&camera, w),
           audioSystem(),
@@ -72,7 +72,7 @@ public:
         unsigned int lightSystemIndex = glGetUniformBlockIndex(generalLitShader.ID, "lightUBO");
         glUniformBlockBinding(generalLitShader.ID, lightSystemIndex, 0);
 
-        string path = "/home/abrar/Projects/gamedev/src/textures/skybox/";
+        string path = DIRIMENGINE_ASSET_ROOT "/textures/skybox/";
         vector<string> faces = {
             path + "right.png",
             path + "left.png",

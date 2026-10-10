@@ -18,8 +18,8 @@ link_directories(${CMAKE_SOURCE_DIR}/lib)
 # 3. Add Source Files
 add_executable(
     ${PROJECT_NAME}
-    src/main.cpp
-    src/stb_image.cpp
+    game/src/main.cpp
+    engine/src/stb_image.cpp
     vendor/src/glad.c
 )
 
@@ -27,6 +27,7 @@ add_executable(
 target_include_directories(
     ${PROJECT_NAME}
     PUBLIC
+    engine/include/dirimengine
     vendor/include
     # Include both sets of headers using the variables provided by the find_package calls
     ${GLFW_INCLUDE_DIRS} 
@@ -54,6 +55,12 @@ target_link_libraries(
     Freetype::Freetype
 
     IrrKlang
+)
+
+target_compile_definitions(
+    ${PROJECT_NAME}
+    PRIVATE
+    DIRIMENGINE_ASSET_ROOT="${CMAKE_SOURCE_DIR}/game/assets"
 )
 
 file(COPY ${CMAKE_SOURCE_DIR}/lib/libIrrKlang.so DESTINATION ${CMAKE_BINARY_DIR})

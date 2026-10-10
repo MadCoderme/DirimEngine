@@ -1,0 +1,10 @@
+# CMake output
+/build/
+
+# Python and local tooling caches
+__pycache__/
+*.py[cod]
+
+# Local compiled binaries
+/DirimEngine
+/src/DirimEngine

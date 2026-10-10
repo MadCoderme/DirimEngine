@@ -70,7 +70,7 @@ public:
                 // STRLICT CHECK: Only damage if we are facing player AND have Line of Sight
                 if (HasLineOfSight()) { 
                      if (targetHealth) *targetHealth -= 10;
-                     scene->audioSystem.Play2D("/home/abrar/Projects/gamedev/src/audio/Melee1.wav", false);
+                     scene->audioSystem.Play2D(DIRIMENGINE_ASSET_ROOT "/audio/Melee1.wav", false);
                      // Trigger attack animation/sound here
                 }
                 lastAttackTime = glfwGetTime();

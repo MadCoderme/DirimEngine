@@ -2,6 +2,11 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <math.h>
+
+#ifndef DIRIMENGINE_ASSET_ROOT
+#define DIRIMENGINE_ASSET_ROOT "game/assets"
+#endif
+
 #include "shaderProgram.h"
 #include "camera.h"
 
@@ -75,15 +80,15 @@ int main() {
 
 
     Plane ground = Plane();
-    ground.setTexture("floor.jpg", "/home/abrar/Projects/gamedev/src/textures", "texture_diffuse");
+    ground.setTexture("floor.jpg", DIRIMENGINE_ASSET_ROOT "/textures", "texture_diffuse");
     ground.activateAABB();
     Plane crosshair = Plane();
-    crosshair.setTexture("crosshair.png", "/home/abrar/Projects/gamedev/src/textures", "texture_diffuse");
+    crosshair.setTexture("crosshair.png", DIRIMENGINE_ASSET_ROOT "/textures", "texture_diffuse");
 
-    Model cubeModel = Model("/home/abrar/Projects/gamedev/src/models/brickcube/brick.obj");
-    Model ammoModel = Model("/home/abrar/Projects/gamedev/src/models/ammobox/ammobox.obj");
-    Model gunModel = Model("/home/abrar/Projects/gamedev/src/models/gun/Gun.obj");
-    Model enemyModel = Model("/home/abrar/Projects/gamedev/src/models/shambler/Shambler.obj");
+    Model cubeModel = Model(DIRIMENGINE_ASSET_ROOT "/models/brickcube/brick.obj");
+    Model ammoModel = Model(DIRIMENGINE_ASSET_ROOT "/models/ammobox/ammobox.obj");
+    Model gunModel = Model(DIRIMENGINE_ASSET_ROOT "/models/gun/Gun.obj");
+    Model enemyModel = Model(DIRIMENGINE_ASSET_ROOT "/models/shambler/Shambler.obj");
 
     scene = new Scene(window);
 
@@ -126,7 +131,7 @@ int main() {
     loader.ObjectMap['E'] = enemyTemplate;
     loader.ObjectMap['A'] = ammoTemplate;
 
-    loader.LoadLevel("/home/abrar/Projects/gamedev/src/levels/level1.txt", &cubeModel, &cubeModel);
+    loader.LoadLevel(DIRIMENGINE_ASSET_ROOT "/levels/level1.txt", &cubeModel, &cubeModel);
     scene->pathfinder.Init(loader.width, loader.height);
 
 
@@ -190,13 +195,13 @@ int main() {
     scene->onLeftClick = leftClickHandler;
     scene->SetPlayerCollisionHandler("ammo", pickAmmo);
 
-    scene->audioSystem.Preload("/home/abrar/Projects/gamedev/src/audio/01-Quake.mp3", 0.2f);
-    scene->audioSystem.Play2D("/home/abrar/Projects/gamedev/src/audio/01-Quake.mp3", true);
-    scene->audioSystem.Preload("/home/abrar/Projects/gamedev/src/audio/Qtestlock4.wav");
-    scene->audioSystem.Preload("/home/abrar/Projects/gamedev/src/audio/Qtestguncock.wav");
-    scene->audioSystem.Preload("/home/abrar/Projects/gamedev/src/audio/Sdeath.wav");
-    scene->audioSystem.Preload("/home/abrar/Projects/gamedev/src/audio/Melee1.wav");
-    scene->audioSystem.Preload("/home/abrar/Projects/gamedev/src/audio/Noammo.wav");
+    scene->audioSystem.Preload(DIRIMENGINE_ASSET_ROOT "/audio/01-Quake.mp3", 0.2f);
+    scene->audioSystem.Play2D(DIRIMENGINE_ASSET_ROOT "/audio/01-Quake.mp3", true);
+    scene->audioSystem.Preload(DIRIMENGINE_ASSET_ROOT "/audio/Qtestlock4.wav");
+    scene->audioSystem.Preload(DIRIMENGINE_ASSET_ROOT "/audio/Qtestguncock.wav");
+    scene->audioSystem.Preload(DIRIMENGINE_ASSET_ROOT "/audio/Sdeath.wav");
+    scene->audioSystem.Preload(DIRIMENGINE_ASSET_ROOT "/audio/Melee1.wav");
+    scene->audioSystem.Preload(DIRIMENGINE_ASSET_ROOT "/audio/Noammo.wav");
 
     glBindVertexArray(0);
     
@@ -278,7 +283,7 @@ int main() {
             else scene->Texts[1].color = glm::vec3(1.0f, 0.0f, 0.0f);
 
             if (playerShot) {
-                scene->audioSystem.Play2D("/home/abrar/Projects/gamedev/src/audio/Qtestguncock.wav", false);
+                scene->audioSystem.Play2D(DIRIMENGINE_ASSET_ROOT "/audio/Qtestguncock.wav", false);
                 scene->AddGunRecoil();
                 Ray r = Ray(scene->camera.cameraPos, scene->camera.cameraFront);
                 
@@ -288,7 +293,7 @@ int main() {
                         if (ray_intersect(r, obj->getWorldAABB())) {
                             obj->updateHealth(-15);
                             if (!obj->isAlive) {
-                                scene->audioSystem.Play3D("/home/abrar/Projects/gamedev/src/audio/Sdeath.wav", obj->position, false);
+                                scene->audioSystem.Play3D(DIRIMENGINE_ASSET_ROOT "/audio/Sdeath.wav", obj->position, false);
                                 enemyCount--;
                                 scene->Texts[3].text = "ENEMY LEFT: " + to_string(enemyCount);
                             }
@@ -341,7 +346,7 @@ void leftClickHandler() {
         playerShot = true;
         playerAmmo--;
     } else {
-        scene->audioSystem.Play2D("/home/abrar/Projects/gamedev/src/audio/Noammo.wav", false);
+        scene->audioSystem.Play2D(DIRIMENGINE_ASSET_ROOT "/audio/Noammo.wav", false);
     }
 }
 
@@ -351,5 +356,5 @@ void pickAmmo(CollisionInfo col, GameObject* obj) {
     
     obj->isAlive = false;
     obj->isCollisionEnabled = false;
-    scene->audioSystem.Play2D("/home/abrar/Projects/gamedev/src/audio/Qtestlock4.wav", false);
+    scene->audioSystem.Play2D(DIRIMENGINE_ASSET_ROOT "/audio/Qtestlock4.wav", false);
 }
